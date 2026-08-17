@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Julio Becerra</title>
 
-    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js"
-            async
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
             defer></script>
 
     <style>
@@ -17,20 +16,18 @@
         }
 
         body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-family: Arial, sans-serif;
             background-color: #f8f9fa;
             color: #1a1a1a;
+
+            min-height: 100vh;
+
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
 
-        .header-title {
-            text-align: center;
-            margin-bottom: 20px;
+            padding: 20px;
         }
 
         h1 {
@@ -39,10 +36,11 @@
             letter-spacing: 2px;
             color: #0f172a;
             text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 30px;
         }
 
-        .captcha-container {
-            margin-top: 20px;
+        #turnstile-container {
             display: flex;
             justify-content: center;
         }
@@ -51,22 +49,36 @@
 
 <body>
 
-    <div class="header-title">
-        <h1>JULIO BECERRA</h1>
-    </div>
+    <h1>JULIO BECERRA</h1>
 
-    <div class="captcha-container">
-        <div
-            class="cf-turnstile"
-            data-sitekey="0x4AAAAAAETF3gMz96WvhKIf"
-            data-callback="turnstileSuccess">
-        </div>
-    </div>
+    <div id="turnstile-container"></div>
 
     <script>
-        function turnstileSuccess(token) {
-            window.location.href = "https://cececap.cl/";
-        }
+        window.addEventListener("load", function () {
+
+            turnstile.render("#turnstile-container", {
+
+                sitekey: "0x4AAAAAAETF3gMz96WvhKIf",
+
+                callback: function (token) {
+
+                    console.log("Turnstile completado correctamente");
+                    console.log("Token:", token);
+
+                    // Redirección
+                    window.location.replace("https://cececap.cl/");
+
+                },
+
+                "error-callback": function (error) {
+
+                    console.error("Error de Turnstile:", error);
+
+                }
+
+            });
+
+        });
     </script>
 
 </body>
