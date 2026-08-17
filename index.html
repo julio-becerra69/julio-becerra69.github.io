@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Julio Becerra</title>
 
-    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
-            defer></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
     <style>
         * {
@@ -40,7 +39,7 @@
             margin-bottom: 30px;
         }
 
-        #turnstile-container {
+        .captcha-container {
             display: flex;
             justify-content: center;
         }
@@ -51,34 +50,20 @@
 
     <h1>JULIO BECERRA</h1>
 
-    <div id="turnstile-container"></div>
+    <div class="captcha-container">
+
+        <div
+            class="g-recaptcha"
+            data-sitekey="6LcMPostAAAAAHgKxVJH7mtUoXYsR5nyR4k6Odw5"
+            data-callback="captchaCompletado">
+        </div>
+
+    </div>
 
     <script>
-        window.addEventListener("load", function () {
-
-            turnstile.render("#turnstile-container", {
-
-                sitekey: "0x4AAAAAAETF3gMz96WvhKIf",
-
-                callback: function (token) {
-
-                    console.log("Turnstile completado correctamente");
-                    console.log("Token:", token);
-
-                    // Redirección
-                    window.location.replace("https://cececap.cl/");
-
-                },
-
-                "error-callback": function (error) {
-
-                    console.error("Error de Turnstile:", error);
-
-                }
-
-            });
-
-        });
+        function captchaCompletado(token) {
+            window.location.href = "https://cececap.cl/";
+        }
     </script>
 
 </body>
