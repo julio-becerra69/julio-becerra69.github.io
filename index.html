@@ -4,14 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Julio Becerra</title>
-    <!-- Script oficial de Cloudflare Turnstile -->
-    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+            async
+            defer></script>
+
     <style>
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
+
         body {
             font-family: 'Helvetica Neue', Arial, sans-serif;
             background-color: #f8f9fa;
@@ -23,10 +27,12 @@
             min-height: 100vh;
             padding: 20px;
         }
+
         .header-title {
             text-align: center;
             margin-bottom: 20px;
         }
+
         h1 {
             font-size: 4rem;
             font-weight: 800;
@@ -34,6 +40,7 @@
             color: #0f172a;
             text-transform: uppercase;
         }
+
         .captcha-container {
             margin-top: 20px;
             display: flex;
@@ -41,18 +48,26 @@
         }
     </style>
 </head>
+
 <body>
 
     <div class="header-title">
         <h1>JULIO BECERRA</h1>
     </div>
 
-    <!-- Contenedor del Captcha debajo del nombre -->
-    <form action="?" method="POST">
-        <div class="captcha-container">
-            <div class="cf-turnstile" data-sitekey="0x4AAAAAAETF3gMz96WvhKIf"></div>
+    <div class="captcha-container">
+        <div
+            class="cf-turnstile"
+            data-sitekey="0x4AAAAAAETF3gMz96WvhKIf"
+            data-callback="turnstileSuccess">
         </div>
-    </form>
+    </div>
+
+    <script>
+        function turnstileSuccess(token) {
+            window.location.href = "https://cececap.cl/";
+        }
+    </script>
 
 </body>
 </html>
